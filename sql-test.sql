@@ -50,3 +50,9 @@ select '---------';
 
 
 --Write your query here
+SELECT c.CustId, c.CustName
+FROM Customer c
+JOIN Orders o ON c.CustId = o.CustId
+WHERE o.YearOfOrder = 2022
+GROUP BY c.CustId, c.CustName
+HAVING SUM(o.OrderAmt) > 1000;

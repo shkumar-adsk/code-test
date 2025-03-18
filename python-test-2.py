@@ -28,11 +28,56 @@
 # ({{[]}})
 
 def check_string(s):
-  
-  return 
+    brk_dict = {
+        "}": "{",
+        ")": "(",
+        "]": "["
+    }
+
+    stack = []
+    for brkt in s:
+        if len(stack) == 0:
+            if brkt in brk_dict.keys():
+                return False
+            else:
+                stack.insert(0, brkt)
+        else:
+            if brkt in brk_dict.keys():
+                in_stk_val = stack.pop(0)
+                if in_stk_val == brk_dict[brkt]:
+                    continue
+                else:
+                    return False
+            else:
+                stack.insert(0, brkt)
+
+    if len(stack) == 0:
+        return True
+    return False
+
+
+# TODO: please install pytest before running the tests.
+# Use command pytest python-test-2.py
+def test_success():
+    input_str = "({})"
+    result = check_string(input_str)
+    assert result == True
+
+
+def test_Faiure():
+    input_str = "(})"
+    result = check_string(input_str)
+    assert result == False
+
 
 if __name__ == "__main__":
-  print(check_string('({{[]}})'))
-  print(check_string('()[]{}'))
-  print(check_string('(]'))
-  print(check_string('()'))
+    print(check_string('({{[]}})'))
+    print(check_string('()[]{}'))
+    print(check_string('(]'))
+    print(check_string('()'))
+
+if __name__ == "__main__":
+    print(check_string('({{[]}})'))
+    print(check_string('()[]{}'))
+    print(check_string('(]'))
+    print(check_string('()'))
