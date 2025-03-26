@@ -45,7 +45,7 @@ select '---------';
 
 -- Write a query to return
 -- All CustId, CustName 
-  -- who have placed total orders (sum of all orders) of more than 1000$ 
+  -- who have placed total orders (sum of all orders) of more than $1000
   -- in the year 2022
 
 
